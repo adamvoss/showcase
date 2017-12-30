@@ -1,0 +1,37 @@
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Halfway there and M2 starts a car!</h1>
+    <p class="post-meta">
+      <time datetime="2017-12-30T14:14:11-06:00" itemprop="datePublished">
+        
+        Dec 30, 2017
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <iframe src="https://www.youtube.com/embed/nqIQS6NJgvI?ecver=2" width="640" height="360" frameborder="0" allowfullscreen=""></iframe>
+
+<p>We wanted to address some of the more frequent questions and feedback that we were getting, so we decided what better way to do that than to do a real project?</p>
+
+<p><strong>Can M2 actually start a car? Yes! Yes, it can!</strong></p>
+
+<p>A friend of ours has a Chevy Tahoe and wanted to see if it would be possible to remotely start his car (a nice feature when living in frigid Minnesota) via the OBD2 port and his phone. We knew that it probably used the same GMLAN interface (also know as single-wire CAN) as many late-model GM cars, so we set out to see if it could be done. We knew we must be on the right track when we plugged M2 into his car and saw SWCAN messages flying around using some beta software we are working with.</p>
+
+<p>One thing that we found interesting was that the bus is “asleep” when the car is turned off, and won’t respond to messages unless “woken up” with a specific command. This makes sense - you don’t want to use any extra power when the car is off.</p>
+
+<p>We had a lot of fun Tuesday afternoon hacking, researching and programming and eventually we were able to start his car! Not only start, but shut down the engine, lock and unlock his doors - all with a little app we put together. The generalized Arduino code we used to start his car is <a href="https://gist.github.com/macchina/ac0db2bc45774836d6fe2a5758b12e06">here</a>.
+.
+Next step could be replacing the WIFI connection between the phone and M2 with a cellular link instead. Text your car to lock the doors while you are out of town?</p>
+
+<p>Thank you once again for all your feedback and comments. Keep ‘em coming.</p>
+
+<p>Josh</p>
+
+<p>There were lots of good comments in the Kickstarter page <a href="https://www.kickstarter.com/projects/1029808658/macchina-the-ultimate-tool-for-taking-control-of-y/posts/1827465">here</a></p>
+
+  </div>
+
+  
+</article>

@@ -1,0 +1,34 @@
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Tesla LIN BUS Hacking with Macchina</h1>
+    <p class="post-meta">
+      <time datetime="2017-12-30T14:14:11-06:00" itemprop="datePublished">
+        
+        Dec 30, 2017
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p><img src="/images/stretchla-v2-695x275%20(1).jpg" alt="" /></p>
+
+<p>We are super excited to see that Otmar (of Zilla Fame) and Deb over at Cafe Electric have had some great success hacking a Tesla S. They are in the middle of building a stretched Voltswagen Van using a salvaged Tesla S as the power train. Proof that really anything can be done.</p>
+
+<p>As you can imagine, reviving a salvaged/crashed Tesla (or any car for that matter) is a tall order. Making things extra challenging is the added complexity of this advanced electric car’s computer system. Their car was not happy after an accident, and the numerous errors showing up on the HMI was proof. One of these errors was as a result of a missing motorized louver in the front of the car. To fix this, they used Macchina to spoof the signals that would have been coming from the louver motor in order to trick the ECU into thinking everything was OK.</p>
+
+<p>Here is what they had to say:</p>
+
+<p>“The Macchina is an Arduino compatible board, very similar to the Mega 2560 with the addition of hardware to run automotive OBD protocols including CAN and K line aka ISO-9141 which seems to be a form of LIN. This is a neat little board that came in very handy, Debbie and I are fans of the Arduino system since it makes simple tasks easy to implement. Although we can code it all the hard way, why bother when the Arduino environment makes simple projects go easily and quickly? You really don’t have to know how to program to get started using Arduino.
+Debbie made up some programs (Arduino “sketches”) that manipulated (bit banged) the LIN port initially to send some commands so we could see the louver motor respond. She then modified it to also read back the data from the louver motor. Next she wrote up “sniffer” code to read data on the LIN bus and display it in a easy readable format in our laptops. This made it much easier to see what codes the louver is sending back so we can spoof those.</p>
+
+<p>We’ve (probably) deduced which addresses are used for the missing louvers, and we can only hope that they respond with the same data set as the one motor that we have here. Next up we’ll try to spoof all the louvers and hope that the car likes what we send. We’ll know it worked if the car stops sending louver error codes to Tesla. If that works, we may hook up a set of RC car servos in place of the louvers so we can watch the car cycling them. It’s fortunate for us that the car cycles the lovers on power up. Otherwise it could be a slow process getting the proper codes.</p>
+
+<p>I’m sure that buying a new set of louvers (for $532.40) would have moved things along much faster, but then we would not have learned LIN bus down to the nitty gritty bit level. It’s a good brain workout to try to decode the nibbles and bits of data and lots of fun for people like us!”</p>
+
+<p>Check out their project <a href="http://cafeelectric.com/stretchla/?orderby=date&amp;order=ASC">here</a></p>
+
+  </div>
+
+  
+</article>

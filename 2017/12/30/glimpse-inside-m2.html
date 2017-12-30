@@ -1,0 +1,112 @@
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">A Glimpse Inside M2</h1>
+    <p class="post-meta">
+      <time datetime="2017-12-30T14:14:11-06:00" itemprop="datePublished">
+        
+        Dec 30, 2017
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>As we set out to create the best open-source automotive interface we could make, we had several goals in mind. We wanted to build something that was as universal-as-possible, small, easy-to-use, versatile and low cost. We believe we did that. The challenge was to jam as many automotive protocol interfaces into a small space, but still retain a low cost to appeal to the largest audience. At the same time, we leveraged and will continue to contribute to the huge open source community.</p>
+
+<hr />
+
+<h3 id="our-design-goals">Our Design Goals</h3>
+
+<h4 id="automotive-focus">Automotive focus:</h4>
+
+<p>The M2 circuitry is designed specifically to interface with your car. The components baked into M2 are perfectly capable of the same features as most high-end tuning/performance, diagnostics, and monitoring hardware on the market. We hope to make car modification and maintenance more open and affordable to everyone.</p>
+
+<h4 id="compact">Compact:</h4>
+
+<p>The area under the dash and the nooks under the hood are very small, so we made M2 is as small as we can make it (2.90” x 1.75” x 0.9”). This was no small task, shrinking the Due by well over 50% and THEN adding all of the interface circuits was one of our biggest challenges.</p>
+
+<h4 id="modularupgradable">Modular/Upgradable:</h4>
+
+<p>Modularity is our hedge against the future - for example, we segregated the processing from the automotive interface onto 2 boards. Automotive interfaces won’t change as quickly as processor technology and this allows future swaps to different (cheaper/faster/better) processors. In addition, the wireless socket (XBEE format) allows for a wide variety of wireless connectivity options. Finally the open source enclosure design leaves you free to choose, design or tweak the case until it is right for your project.</p>
+
+<h4 id="open-source">Open Source:</h4>
+
+<p>The Arduino IDE is well known and adopted, by basing our processor board on the Arduino Due we have provided a familiar programing experience with an existing help network. In addition, the enormous amount of existing libraries and code out there helps to speed your development. No need to reinvent the wheel.</p>
+
+<hr />
+
+<h3 id="lets-take-a-closer-look-at-the-hardware-features">Let’s take a closer look at the hardware features:</h3>
+
+<p><img src="/images/exploded.jpg" class="inserted" width="300" height="376" /></p>
+
+<p>We’ve carefully selected the best features to ensure compatibility and durability while remaining low in cost. Coming from a consumer-electronics background, our strengths lie in hardware design and manufacturing. Our focus has alway been on automotive applications and our design is an attempt at the best form factor for your car.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Wireless Socket</strong></td>
+      <td>Add a wireless option if you want, for example: BLE, WIFI, GSM, 3G, LTE, … We use the XBEE “form-factor” here.</td>
+    </tr>
+    <tr>
+      <td><strong>Processor</strong></td>
+      <td>The same Atmel SAM3X8E processor used on Arduino DUE - a 32-bit ARM Cortex M3 architecture running at 84MHz.</td>
+    </tr>
+    <tr>
+      <td><strong>MicroSD Card Socket</strong></td>
+      <td>HSMCI (or SPI) interface for all your high speed data logging needs. RTOS anyone?</td>
+    </tr>
+    <tr>
+      <td><strong>Micro USB</strong></td>
+      <td>USB 2.0 also allows Macchina to act as both a USB Device and Host.</td>
+    </tr>
+    <tr>
+      <td><strong>LEDs</strong></td>
+      <td>5 one-color and 1 RGB programmable indicators. Great for debugging.</td>
+    </tr>
+    <tr>
+      <td><strong>Memory</strong></td>
+      <td>32k EEPROM for non-volatile memory via I2C, 512 KB for the user applications, 96 KB SRAM.</td>
+    </tr>
+    <tr>
+      <td><strong>GPIO Pins</strong></td>
+      <td>6 Automotive level IO Pins to Control 12V devices (Examples: relays, fans, lights, etc) OR act as analog input (like temp sensor).</td>
+    </tr>
+    <tr>
+      <td><strong>Power Supplies</strong></td>
+      <td>5V@ 3 amps, 3.3V@ 1 amps for connecting add ons with worrying about power issues.</td>
+    </tr>
+    <tr>
+      <td><strong>Automotive interface Circuits</strong></td>
+      <td>2 channels of CAN, 2 channels of LIN/ K-line, J1850 VPW/PWM, Single-wire CAN interfaces for maximum car compatibility.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>We chose these parts so we could hit a certain design focus and philosophy. The focus has alway been the automotive world and our design is an attempt at the best form factor for your car.</p>
+
+<hr />
+
+<p><img src="/images/DashOrHood.png" class="inserted" width="675" height="284" /></p>
+
+<h3 id="versatility">Versatility</h3>
+
+<p>Macchina Hardware is available in two different form factors, one that can be wired Under-The-Hood (UTH) and the other that is easily installed Under-The-Dash (UTD) via the OBD2 port standard in all modern vehicles. The UTH version is a bit more permanent and can access other vehicle networks that are not exposed through the OBD2 port. The UTD M2 is easy to install and work with while still being mostly out of the way. The two versions share the same M2 core and only differ in connector type. M2’s core has a modular design for flexibility, a processor that can keep up with modern cars, a design that fits anywhere, and a common programming experience through Arduino.</p>
+
+<hr />
+
+<h3 id="testing-and-design">Testing and Design</h3>
+
+<p>Through our experience in developing embedded and consumer electronics, we know how to make things. Iteration is key. Since our first shipping Macchina back in 2010 to now, we have worked with our loyal customers and friends to keep improving, learning and developing Macchina. Taking all of this feedback, we now have something to show for it. For the last several months, we have been testing and USING our latest M2 hardware. We are excited to share it with you soon.</p>
+
+<p><img src="/images/img_thermal_1467762700356.jpg" alt="" /></p>
+
+  </div>
+
+  
+</article>

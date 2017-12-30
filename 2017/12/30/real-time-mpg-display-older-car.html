@@ -1,0 +1,94 @@
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Real-time MPG display on an older car</h1>
+    <p class="post-meta">
+      <time datetime="2017-12-30T14:14:11-06:00" itemprop="datePublished">
+        
+        Dec 30, 2017
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p><img src="/images/mpg%20banner%20crop.png" alt="" /></p>
+
+<p>Most newer cars already have a display showing you how efficiently you are driving. Usually this takes the form of a digital readout showing you miles driven per gallon of gas over 2 time-frames: short term (instantaneous) and long term (average). Wouldn’t it be cool to add this feature to older cars?</p>
+
+<p><img src="/images/20171106_122955_1b9c7.png" class="image-640_wide inserted" width="640" height="381" /></p>
+
+<h1 id="here-is-a-typical-mpg-readout-from-a-typical-car-kinda-lame-lets-make-something-cooler">Here is a typical MPG readout from a typical car. Kinda lame. Let’s make something cooler!</h1>
+
+<p><strong>So how do you calculate MPG?</strong> We need to know how much fuel is being used and how far the vehicle travels by burning that fuel. With only 2 variables, Mass Air Flow (MAF) and vehicle speed (VSS), we can calculate fuel economy.</p>
+
+<p>Mass air flow (MAF) is a measurement of the amount of air going to the engine measured in grams/second. Your car’s ECU constantly tries to maintain the ideal ratio of air and fuel to make the most efficient combustion. For gasoline, this ratio is 14.7 grams of air per gram of fuel. Read more about that <a href="https://en.wikipedia.org/wiki/Stoichiometry">here</a>.</p>
+
+<p>Vehicle speed (VSS) is a measurement of speed (duh) measured in Km/hour.</p>
+
+<p>Next, we convert grams of gasoline to gallons. This can vary depending on fuel grade, but we’ll use 6.17 pounds per gallon for this constant. Now it is just a matter of converting units and simplifying the math knowing that 454g = 1 pound, 3600 seconds = 1 hour, and 1 Km = 0.621371 miles. This yields the following formula to derive MPG:</p>
+
+<p><img src="/images/yc78gt9m.png" class="inserted" width="465" height="41" /></p>
+
+<p>The original source for the above math can be found in a 2005 article in Circuit Cellar magazine by Bruce D. Lightner. For a more in-depth explanation, refer to the article <a href="http://www.lightner.net/lightner/bruce/Lightner-183.pdf">here</a>.</p>
+
+<p>Thankfully, both of these values (and many more) are required to be available at the OBD2 port of a car. While we could have done this project with a newer CAN-bus equipped car, we decided to test with an older Pre-CAN car. In this case, we gave a sweet 2004 Toyota Rav4 a modern car feature!</p>
+
+<p><strong>Hardware:</strong></p>
+
+<p>The hardware setup is pretty straight-forward. Our test vehicle (the sweet 2004 Rav4) uses ISO9141 (aka K-Line) as the communication protocol. ISO9141 is similar to RS-232, but with different voltage levels. Read all about K-line in our <a href="http://docs.macchina.cc/m2/technical-references/interfaces.html#k-line-aka-iso9141-kwp2000">documentation section.</a></p>
+
+<p>We use a <a href="https://www.macchina.cc/content/m2-under-dash">Macchina M2</a> as the ISO9141 interface.</p>
+
+<p>To display MPG data, we could have used a standard digital readout like some cars have, but we thought it would be much cooler to build a more “relative” value gauge. While knowing the exact MPG value can be useful, we figured a display that gave us an instant visual feedback of how we are driving would easier to interpret while in motion.</p>
+
+<p>For this purpose, we chose the <a href="https://www.adafruit.com/product/2869">Adafruit NeoPixel Stick</a> as the indicator - simply 8 addressable RGB LEDs in a row.</p>
+
+<p>Only 3 wires are needed to connect M2 to a NeoPixel. We connected +5V, GND and Data from the 26 pin connector to the NeoPixel.</p>
+
+<p><img src="/images/setup7a72.png" class="image-640_wide inserted" style="width:100.0%" /> Simple set up</p>
+
+<p><img src="/images/connectionseba4.png" class="image-640_wide inserted" style="width:100.0%" /> 3 wires connected to 26 pin “expansion” connector</p>
+
+<p><img src="/images/NeoPixel7f96.png" class="image-640_wide inserted" style="width:100.0%" /> 3 wires soldered to NeoPixel</p>
+
+<p>For our demo, we used an OBD extension cable and shorter wire to the NeoPixel. Alternatively, we could have plugged M2 directly into the OBD2 port and ran longer wires to the LED display. For the test drive, we just stuck the LEDs and M2 to the dash with double-sided tape.</p>
+
+<p><strong>Code:</strong></p>
+
+<p>The sketch loaded onto M2 employs 2 excellent libraries to handle the ISO9141 communication and LED driving:</p>
+
+<p><a href="https://github.com/iwanders/OBD9141">https://github.com/iwanders/OBD9141</a></p>
+
+<p><a href="https://github.com/adafruit/Adafruit_NeoPixel">https://github.com/adafruit/Adafruit_NeoPixel</a></p>
+
+<p>The actual sketch code is here:</p>
+
+<script src="https://gist.github.com/rocketjosh/1a2a3ed7f7c7c160d8ae84248f07e61a.js"></script>
+
+<p><a href="https://gist.github.com/rocketjosh/1a2a3ed7f7c7c160d8ae84248f07e61a">https://gist.github.com/rocketjosh/1a2a3ed7f7c7c160d8ae84248f07e61a</a></p>
+
+<p><strong>Demo:</strong></p>
+
+<p>An interesting discovery is that it is quite easy to “train” yourself to not make the red LEDs light up when driving. M2 was programmed to make the LED display show red light up when car goes below 10 MPG. It seems that even small gas pedal changes can make a large MPG change, while not making a large acceleration change.</p>
+
+<p>It would be interesting to monitor how using this gauge over time can change affect overall driving habits.</p>
+
+<p><strong>Next steps, going further:</strong></p>
+
+<ul>
+  <li>Do the same project with a newer CAN-equipped car.</li>
+  <li>Expand display by adding additional NeoPixel Stick for “Average” MPG.</li>
+  <li>Add more colors for more visual feedback and cooler display. Maybe more colors for different ranges of MPG.</li>
+  <li>Add a “trip cost” feature: Input how much you paid for a gallon of gas, M2 calculates actual cost of traveling from A to B.</li>
+</ul>
+
+<p><strong>Discussion:</strong></p>
+
+<p>Join the conversation at our forums. Share your thoughts, questions and ideas.</p>
+
+<h1 id="comment-here"><a href="https://forum.macchina.cc/t/real-time-mpg-display-on-an-older-car/410">Comment Here</a></h1>
+
+  </div>
+
+  
+</article>
